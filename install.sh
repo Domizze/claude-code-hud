@@ -29,7 +29,8 @@ fi
 # the private case. Whichever is available wins, so flipping the repo's
 # visibility never needs an edit here.
 fetch() {
-  if command -v curl >/dev/null && curl -fsSL "https://raw.githubusercontent.com/$REPO/$BRANCH/$1"; then
+  # 404 here just means the repo is private; that's the gh path, not an error.
+  if command -v curl >/dev/null && curl -fsSL "https://raw.githubusercontent.com/$REPO/$BRANCH/$1" 2>/dev/null; then
     return 0
   fi
   command -v gh >/dev/null || {
