@@ -1,0 +1,6 @@
+{
+  // "horizontal" or "vertical"
+  "layout": "vertical",
+  "Directory": true,
+  "Repo": true
+}
