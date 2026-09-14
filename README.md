@@ -1,6 +1,6 @@
 # claude-code-hud
 
-My Claude Code status line. Two files and an installer.
+My Claude Code status line: the renderer, its column config, and an installer.
 
     5h Usage │ 7d Usage │ Context │ Model │ Repo │ Directory │ Version
     21% (~3h) │ 2% (~167h) │ 42% Used │ Opus 5 │ my-repo | main │ D:/code/my-repo │ ● v2.0.0
