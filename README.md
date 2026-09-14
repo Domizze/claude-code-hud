@@ -7,13 +7,24 @@ My Claude Code status line: the renderer, its column config, and an installer.
 
 ## Install on a new machine
 
-Needs `node` and `gh` (`gh auth login` first). Then:
+Needs `node`. Clone and run:
+
+    git clone https://github.com/Domizze/claude-code-hud.git
+    cd claude-code-hud
+    ./install.sh
+
+Or without a clone, if the repo is public:
+
+    curl -fsSL https://raw.githubusercontent.com/Domizze/claude-code-hud/main/install.sh | bash
+
+While it's private, the piped form needs `gh` (`gh auth login` first):
 
     gh api repos/Domizze/claude-code-hud/contents/install.sh -H "Accept: application/vnd.github.raw" | bash
 
-Re-run the same line to update. It backs up `settings.json` to
-`settings.json.bak` before touching it, and smoke-tests the render before
-declaring success.
+Re-run any of them to update. The installer copies from the clone when it
+finds one and downloads otherwise, backs up `settings.json` to
+`settings.json.bak` before touching it (and refuses to write if that file
+isn't valid JSON), then smoke-tests a real render before declaring success.
 
 ## What the Repo column shows
 
