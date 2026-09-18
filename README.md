@@ -3,7 +3,7 @@
 My Claude Code status line: the renderer, its column config, and an installer.
 
     5h Usage │ 7d Usage │ Context │ Model │ Repo │ Directory │ Version
-    21% (~3h) │ 2% (~167h) │ 42% Used │ Opus 5 │ my-repo | main │ D:/code/my-repo │ ● v2.0.0
+    21% (~3h) │ 2% (~167h) │ 42% Used │ Opus 5 (high) │ my-repo | main │ D:/code/my-repo │ ● v2.0.0
 
 ## Install on a new machine
 
@@ -25,6 +25,14 @@ Re-run any of them to update. The installer copies from the clone when it
 finds one and downloads otherwise, backs up `settings.json` to
 `settings.json.bak` before touching it (and refuses to write if that file
 isn't valid JSON), then smoke-tests a real render before declaring success.
+
+## What the Model column shows
+
+The model name with its **reasoning effort level** in brackets — `Opus 5
+(high)`, `Opus 5 (max)` — in place of the `(1M context)` suffix Claude Code
+sends, which says the same thing on every render. Effort comes from
+`effort.level` in the status line's stdin; a Claude Code old enough not to
+send it gets the original name back, brackets and all.
 
 ## What the Repo column shows
 

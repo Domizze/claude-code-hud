@@ -132,7 +132,13 @@ function getContextPercent(stdin) {
 
 function getModelId(stdin) {
   // Claude Code sends the human-friendly name directly — prefer it over guessing from the id.
-  if (stdin.model?.display_name) return stdin.model.display_name;
+  // Its "(1M context)" suffix is less useful than the reasoning effort level, so swap it out.
+  // Older Claude Code builds send no effort at all; then the name stays exactly as it came.
+  const effort = stdin.effort?.level;
+  if (stdin.model?.display_name) {
+    const name = stdin.model.display_name.replace(/\s*\([^)]*\)\s*$/, "");
+    return effort ? `${name} (${effort})` : stdin.model.display_name;
+  }
   const id = stdin.model?.id ?? "unknown";
   // No whitelist of family names: split into name words vs version numbers, whatever they are.
   // "claude-opus-4-6" → "Opus 4.6", "claude-encyclopedia-5" → "Encyclopedia 5", "claude-haiku-4-5-20251001" → "Haiku 4.5"
