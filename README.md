@@ -15,11 +15,15 @@ Needs `node`. Clone and run:
 
 Or without a clone, if the repo is public:
 
-    curl -fsSL https://raw.githubusercontent.com/Domizze/claude-code-hud/main/install.sh | bash
+    bash -c "$(curl -fsSL https://raw.githubusercontent.com/Domizze/claude-code-hud/main/install.sh)"
 
-While it's private, the piped form needs `gh` (`gh auth login` first):
+(The command substitution finishes the whole download before bash runs any
+of it, so a dropped connection can't leave you with a half-executed install.
+That's the form Homebrew and most mature installers use.)
 
-    gh api repos/Domizze/claude-code-hud/contents/install.sh -H "Accept: application/vnd.github.raw" | bash
+While it's private, the same form needs `gh` (`gh auth login` first):
+
+    bash -c "$(gh api repos/Domizze/claude-code-hud/contents/install.sh -H "Accept: application/vnd.github.raw")"
 
 Re-run any of them to update. The installer copies from the clone when it
 finds one and downloads otherwise, backs up `settings.json` to

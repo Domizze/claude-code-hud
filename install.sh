@@ -4,8 +4,8 @@
 #   git clone https://github.com/Domizze/claude-code-hud.git
 #   cd claude-code-hud && ./install.sh
 #
-# Also works piped, with no clone:
-#   curl -fsSL https://raw.githubusercontent.com/Domizze/claude-code-hud/main/install.sh | bash
+# Also works with no clone (download completes before bash runs any of it):
+#   bash -c "$(curl -fsSL https://raw.githubusercontent.com/Domizze/claude-code-hud/main/install.sh)"
 #
 # Idempotent: safe to re-run to update.
 set -euo pipefail
@@ -18,7 +18,7 @@ FILES="metricc-cc-statusbar.mjs config.jsonc merge-settings.mjs"
 command -v node >/dev/null || { echo "install.sh: node not found on PATH" >&2; exit 1; }
 
 # Running from a clone? Then the files sit next to this script and there is
-# nothing to download. Piped through bash, BASH_SOURCE points at nothing useful.
+# nothing to download. Run via bash -c, BASH_SOURCE points at nothing useful.
 SRC=""
 self="${BASH_SOURCE[0]:-}"
 if [ -n "$self" ] && [ -f "$(dirname "$self")/metricc-cc-statusbar.mjs" ]; then
